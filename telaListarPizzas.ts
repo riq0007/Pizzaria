@@ -5,6 +5,18 @@ function menu(): void{
     console.log(`2 - Listar pizzas`)
     console.log(`3 - Procurar pizza por id`)
     console.log(`4 - Sair`)
+    
+
+    const option = readline.questionInt(`Escolha uma opção: "`);
+
+    switch(option){
+        case 1:
+            const id = readline.questionInt(`Id da pizza:`);
+            const name = readline.questionInt(`Nome da pizza:`);
+            const description = readline.questionInt(`Descrição da pizza:`);
+            const stock = readline.questionInt(`Stoque da pizza (quantas tem)`);
+            break;
+    }
 
 }
 interface Pizza {
