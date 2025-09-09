@@ -6,22 +6,24 @@ interface Pizza {
     name: string;
     description: string;
     stock: boolean;
-    status: PizzaPreparando;
+    status: PizzaStatus;
 }
-enum PizzaPreparando{
+enum PizzaStatus{
 EmPreparo = 'Em Preparo',
 Pronta = 'Pronta' ,
 Entregue = 'Entregue',
 Cancelada = 'Cancelada',
 }
 const pizzas: Pizza [] = [];
-
-function addPizza(pizza: Pizza){//*Nos parametros da função declarei que a variavel pizza representaria a Array Pizza,  devendo se comportar como a interface anteriormente projetada.
+// addPizza = função para adicionar uma pizza que aceita apenas o formato da interface Pizza -> pizzaAdd(id, name, description, stock, status)
+function addPizza(pizza: Pizza){
     pizzas.push(pizza)          
 }
+// listPizzas = Função que percorre toda a array pizzas [], assim executando um console.log para cada interface armazenada no array 
 function listPizzas ():void{
     pizzas.forEach(u => console.log(`ID da pizza: ${u.id}\nNome da pizza: ${u.name}\nDescrição da pizza: ${u.description}\nA pizza está: ${u.status}!\n `));
 }
+// PizzaQueVaiSerAtualizada = 
 function PizzaQueVaiSerAtualizada(): void{
     console.clear();
     const IDpizza = readline.questionInt(`Digite o Id da pizza que você deseja alterar:`)
@@ -31,12 +33,12 @@ function PizzaQueVaiSerAtualizada(): void{
         console.clear();
         console.log(`\n////////// A pizza tem os seguintes status: ////////// \n\nNome da pizza: ${encontrarPizza.name}\nStatus da pizza: ${encontrarPizza.status}`)
         console.log(`\n////////// Caso queira mudar o status, escolha uma das opções abaixo //////////\n`)
-        const OpcoesDeStatus = Object.values(PizzaPreparando);
+        const OpcoesDeStatus = Object.values(PizzaStatus);
         const SelecaoDoStatus = readline.keyInSelect(OpcoesDeStatus,`Escolha o novo status:`)
         if(SelecaoDoStatus != -1){
             console.clear();
             const newStatus = OpcoesDeStatus[SelecaoDoStatus]
-            encontrarPizza.status = newStatus as PizzaPreparando;
+            encontrarPizza.status = newStatus as PizzaStatus;
             console.log(`Perfeito! O status da pizza foi alterado para\n ${encontrarPizza.status}`)
               }else{
             console.log(`Operação cancelada`) }
@@ -73,7 +75,7 @@ case 1:
             const description = readline.question(`Descrição da pizza:`);
             const stock: boolean = readline.keyInYN(`Stoque da pizza:`) === 'y';
             
-            addPizza({id, name , description , stock, status: PizzaPreparando.EmPreparo})
+            addPizza({id, name , description , stock, status: PizzaStatus.EmPreparo})
             readline.keyInPause(`Pressione qualquer tecla para continuar...`)
             break;
 

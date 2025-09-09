@@ -1,19 +1,22 @@
 //* Importei a biblioteca readline que basicamente lê os inputs do usuário no console.
 import * as readline from 'readline-sync';
-var PizzaPreparando;
-(function (PizzaPreparando) {
-    PizzaPreparando["EmPreparo"] = "Em Preparo";
-    PizzaPreparando["Pronta"] = "Pronta";
-    PizzaPreparando["Entregue"] = "Entregue";
-    PizzaPreparando["Cancelada"] = "Cancelada";
-})(PizzaPreparando || (PizzaPreparando = {}));
+var PizzaStatus;
+(function (PizzaStatus) {
+    PizzaStatus["EmPreparo"] = "Em Preparo";
+    PizzaStatus["Pronta"] = "Pronta";
+    PizzaStatus["Entregue"] = "Entregue";
+    PizzaStatus["Cancelada"] = "Cancelada";
+})(PizzaStatus || (PizzaStatus = {}));
 const pizzas = [];
+// addPizza = função para adicionar uma pizza que aceita apenas o formato da interface Pizza -> pizzaAdd(id, name, description, stock, status)
 function addPizza(pizza) {
     pizzas.push(pizza);
 }
+// listPizzas = Função que percorre toda a array pizzas [], assim executando um console.log para cada interface armazenada no array 
 function listPizzas() {
     pizzas.forEach(u => console.log(`ID da pizza: ${u.id}\nNome da pizza: ${u.name}\nDescrição da pizza: ${u.description}\nA pizza está: ${u.status}!\n `));
 }
+// PizzaQueVaiSerAtualizada = 
 function PizzaQueVaiSerAtualizada() {
     console.clear();
     const IDpizza = readline.questionInt(`Digite o Id da pizza que você deseja alterar:`);
@@ -22,7 +25,7 @@ function PizzaQueVaiSerAtualizada() {
         console.clear();
         console.log(`\n////////// A pizza tem os seguintes status: ////////// \n\nNome da pizza: ${encontrarPizza.name}\nStatus da pizza: ${encontrarPizza.status}`);
         console.log(`\n////////// Caso queira mudar o status, escolha uma das opções abaixo //////////\n`);
-        const OpcoesDeStatus = Object.values(PizzaPreparando);
+        const OpcoesDeStatus = Object.values(PizzaStatus);
         const SelecaoDoStatus = readline.keyInSelect(OpcoesDeStatus, `Escolha o novo status:`);
         if (SelecaoDoStatus != -1) {
             console.clear();
@@ -58,7 +61,7 @@ function menu() {
                 const name = readline.question(`Nome da pizza:`);
                 const description = readline.question(`Descrição da pizza:`);
                 const stock = readline.keyInYN(`Stoque da pizza:`) === 'y';
-                addPizza({ id, name, description, stock, status: PizzaPreparando.EmPreparo });
+                addPizza({ id, name, description, stock, status: PizzaStatus.EmPreparo });
                 readline.keyInPause(`Pressione qualquer tecla para continuar...`);
                 break;
             case 2:
