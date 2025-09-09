@@ -23,7 +23,7 @@ function addPizza(pizza: Pizza){
 function listPizzas ():void{
     pizzas.forEach(u => console.log(`ID da pizza: ${u.id}\nNome da pizza: ${u.name}\nDescrição da pizza: ${u.description}\nA pizza está: ${u.status}!\n `));
 }
-// PizzaQueVaiSerAtualizada = 
+// PizzaQueVaiSerAtualizada = Função para alterar status das pizzas
 function PizzaQueVaiSerAtualizada(): void{
     console.clear();
     const IDpizza = readline.questionInt(`Digite o Id da pizza que você deseja alterar:`)
@@ -47,6 +47,7 @@ function PizzaQueVaiSerAtualizada(): void{
 console.log(`Pizza não encontrada`)
  }
 }
+// Função para chamar o menu.
 function menu(): void{
     
     let running= true;
@@ -74,13 +75,14 @@ case 1:
             const name = readline.question(`Nome da pizza:`);
             const description = readline.question(`Descrição da pizza:`);
             const stock: boolean = readline.keyInYN(`Stoque da pizza:`) === 'y';
-            
+            // Chamado a função addPizza adicionando os valores armazenados nas constantes e previamente fornecidos pelo usuario.
             addPizza({id, name , description , stock, status: PizzaStatus.EmPreparo})
             readline.keyInPause(`Pressione qualquer tecla para continuar...`)
             break;
 
 case 2:
     console.clear();
+            // O parametro if do case 2 impôe = SE o array pizzas [] ter mais que 0 indices, então chame a função listPizzas, senão print no console "Nenhuma pizza registrada!".
             if(pizzas.length > 0 ){
             listPizzas();}
                
@@ -92,7 +94,7 @@ case 2:
             
 case 3:
     console.clear();
-            
+         
     let encontrada = false;
     
             const idEncontrarPizza = readline.questionInt(`Digite o ID da pizza que você quer encontrar:`)
