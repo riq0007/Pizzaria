@@ -20,16 +20,16 @@ function addPizza(pizza: Pizza){//*Nos parametros da função declarei que a var
     pizzas.push(pizza)          
 }
 function listPizzas ():void{
-    pizzas.forEach(u => console.log(`ID da pizza: ${u.id}\nNome da pizza: ${u.name}\nDescrição da pizza:${u.description}\nA pizza está: ${u.status}!\n `));
+    pizzas.forEach(u => console.log(`ID da pizza: ${u.id}\nNome da pizza: ${u.name}\nDescrição da pizza: ${u.description}\nA pizza está: ${u.status}!\n `));
 }
 function PizzaQueVaiSerAtualizada(): void{
     console.clear();
-    const IDpizza = readline.questionInt(`Digite o Id da pizza que você deseja alterar`)
+    const IDpizza = readline.questionInt(`Digite o Id da pizza que você deseja alterar:`)
     const encontrarPizza = pizzas.find(p => p.id === IDpizza);
 
     if(encontrarPizza){
         console.clear();
-        console.log(`\n////////// A pizza tem os seguintes status: ////////// \n\nNome da pizza:->${encontrarPizza.name}<-\nStatus da pizza: ->${encontrarPizza.status}<-`)
+        console.log(`\n////////// A pizza tem os seguintes status: ////////// \n\nNome da pizza: ${encontrarPizza.name}\nStatus da pizza: ${encontrarPizza.status}`)
         console.log(`\n////////// Caso queira mudar o status, escolha uma das opções abaixo //////////\n`)
         const OpcoesDeStatus = Object.values(PizzaPreparando);
         const SelecaoDoStatus = readline.keyInSelect(OpcoesDeStatus,`Escolha o novo status:`)
@@ -71,7 +71,7 @@ case 1:
             const id: number = readline.questionInt(`Id da pizza:`) || 0;
             const name = readline.question(`Nome da pizza:`);
             const description = readline.question(`Descrição da pizza:`);
-            const stock: boolean = readline.keyInYN(`Stoque da pizza:`) || false;
+            const stock: boolean = readline.keyInYN(`Stoque da pizza:`) === 'y';
             
             addPizza({id, name , description , stock, status: PizzaPreparando.EmPreparo})
             readline.keyInPause(`Pressione qualquer tecla para continuar...`)
@@ -97,7 +97,7 @@ case 3:
             for(let i = 0; i < pizzas.length; i++){
                 const pizza = pizzas[i];
                 if(pizza && pizza.id == idEncontrarPizza){
-                    console.log(`${pizza.id} - ${pizza.name} - ${pizza.status}`)
+                    console.log(`Id da pizza: ${pizza.id}\nNome da pizza: ${pizza.name}\nStatus: ${pizza.status}`)
                     encontrada = true;
                     readline.keyInPause(`Pressione qualquer tecla para continuar...`)
                     break;}

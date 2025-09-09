@@ -59,7 +59,7 @@ function menu() {
                 var id = readline.questionInt("Id da pizza:") || 0;
                 var name_1 = readline.question("Nome da pizza:");
                 var description = readline.question("Descri\u00E7\u00E3o da pizza:");
-                var stock = readline.keyInYN("Stoque da pizza:") || false;
+                var stock = readline.keyInYN("Stoque da pizza:") === 'y';
                 addPizza({ id: id, name: name_1, description: description, stock: stock, status: PizzaPreparando.EmPreparo });
                 readline.keyInPause("Pressione qualquer tecla para continuar...");
                 break;
