@@ -11,7 +11,7 @@ Este projeto é uma aplicação simples baseada em console para gerenciar uma pi
 
 1. **Clone o repositório**
    ```bash
-   git clone <repository-url>
+   git clone <https://github.com/riq0007/Pizzaria.git>
    cd pizzaria
    ```
 
